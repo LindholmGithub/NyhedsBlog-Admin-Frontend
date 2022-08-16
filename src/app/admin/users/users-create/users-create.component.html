@@ -1,0 +1,60 @@
+<h2 class="text-center">Create A User</h2>
+
+<div class="col col-md-9 mx-auto">
+  <form [formGroup]="createForm" (ngSubmit)="doCreate()">
+    <div class="form-group">
+      <label for="firstname">First Name:</label>
+      <input type="text" class="form-control" placeholder="First name here..." id="firstname" formControlName="firstname">
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Last Name:</label>
+      <input type="text" class="form-control" placeholder="Last name here..." id="lastname" formControlName="lastname">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" placeholder="Address here..." id="email" formControlName="email">
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="number" class="form-control" placeholder="Phone number here..." id="phoneNumber" formControlName="phoneNumber">
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" placeholder="Username here..." id="username" formControlName="username">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="text" class="form-control" placeholder="Password here..." id="password" formControlName="password">
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role:</label>
+      <select class="form-control" id="role" formControlName="role">
+        <option [ngValue]=1 selected>Author</option>
+        <option [ngValue]=2>Moderator</option>
+        <option [ngValue]=3>Administrator</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <button type="submit" class="btn btn-outline-primary btn-block">Save</button>
+      </div>
+      <div class="col-6">
+        <button type="reset" class="btn btn-outline-danger btn-block">Reset</button>
+      </div>
+    </div>
+    <div class="row mt-3" *ngIf="formError">
+      <div class="col">
+        <div class="alert alert-danger" role="alert">
+          Error: {{ formErrorMessage }}
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
