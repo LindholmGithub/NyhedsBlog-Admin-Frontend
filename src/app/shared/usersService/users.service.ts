@@ -28,7 +28,7 @@ export class UsersService {
     return this._http.delete<UserDto>(environment.api + '/api/user/'+id);
   }
 
-  update(id: number, user: UserCreateDto): Observable<UserDto> {
+  update(id: number, user: UserDto): Observable<UserDto> {
     return this._http.put<UserDto>(environment.api + '/api/user/' + id, user);
   }
 }

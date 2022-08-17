@@ -1,1 +1,69 @@
-<p>users-edit works!</p>
+<h2 class="text-center">Edit User</h2>
+
+<div class="col col-md-9 mx-auto">
+  <form [formGroup]="editForm" (ngSubmit)="doEdit()">
+    <div class="form-group my-2">
+      <label for="id">User ID:</label>
+      <input type="number" class="form-control" id="id" formControlName="id" [readOnly]="true">
+    </div>
+
+    <div class="form-group my-2">
+      <label for="firstname">First Name:</label>
+      <input type="text" class="form-control" placeholder="First name here..." id="firstname" formControlName="firstname" [readOnly]="!editState">
+    </div>
+
+    <div class="form-group my-2">
+      <label for="lastname">Last Name:</label>
+      <input type="text" class="form-control" placeholder="Last name here..." id="lastname" formControlName="lastname" [readOnly]="!editState">
+    </div>
+
+    <div class="form-group my-2">
+      <label for="email">Email:</label>
+      <input type="text" class="form-control" placeholder="Email here..." id="email" formControlName="email" [readOnly]="!editState">
+    </div>
+
+    <div class="form-group my-2">
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="number" class="form-control" placeholder="Phone number here..." id="phoneNumber" formControlName="phoneNumber" [readOnly]="!editState">
+    </div>
+
+    <div class="form-group my-2">
+      <label for="role">Role:</label>
+      <select class="form-control" id="role" formControlName="role" [attr.disabled]="!editState ? '' : null">
+        <option [ngValue]=1>Author</option>
+        <option [ngValue]=2>Moderator</option>
+        <option [ngValue]=3>Administrator</option>
+      </select>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-6">
+        <button type="submit" class="btn btn-outline-primary w-100">
+          <span *ngIf="!editState; then cantEdit else canEdit"></span>
+          <ng-template #canEdit>
+            Save
+          </ng-template>
+          <ng-template #cantEdit>
+            Edit
+          </ng-template>
+        </button>
+      </div>
+      <div class="col-6">
+        <span *ngIf="!editState; then goBackBtn else cancelBtn"></span>
+        <ng-template #goBackBtn>
+          <button (click)="goBack()" class="btn btn-outline-warning w-100">Back</button>
+        </ng-template>
+        <ng-template #cancelBtn>
+          <button (click)="editState = !editState" class="btn btn-outline-warning w-100">Cancel</button>
+        </ng-template>
+      </div>
+    </div>
+    <div class="row mt-3" *ngIf="formError">
+      <div class="col">
+        <div class="alert alert-danger" role="alert">
+          Error: {{formErrorMessage}}
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
