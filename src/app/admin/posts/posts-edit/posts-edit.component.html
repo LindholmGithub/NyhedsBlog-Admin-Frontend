@@ -1,1 +1,73 @@
-<p>posts-edit works!</p>
+<h2 class="text-center">Redigér Opslag</h2>
+
+<div class="col col-md-9 mx-auto">
+  <form [formGroup]="editForm" (ngSubmit)="doEdit()">
+    <input type="hidden" formControlName="authorId">
+    <div class="form-group my-2">
+      <label for="id">Opslag ID:</label>
+      <input type="number" class="form-control bg-light" id="id" formControlName="id" [attr.disabled]="true">
+    </div>
+
+    <div class="form-group my-2">
+      <label for="title">Overskrift:</label>
+      <input type="text" class="form-control" placeholder="Overskrift her..." id="title" formControlName="title" [readOnly]="!editState">
+    </div>
+
+    <div class="form-group">
+      <label for="category">Kategori:</label>
+      <select class="form-control" id="category" formControlName="categoryId" *ngIf="categories$ | async as categories" [attr.disabled]="!editState ? '' : null">
+        <option *ngFor="let category of categories" [ngValue]="category.id">{{category.title}}</option>
+      </select>
+    </div>
+
+    <div class="form-group my-2">
+      <label for="featuredImageUrl">Billede URL:</label>
+      <input type="text" class="form-control" placeholder="Billede URL her..." id="featuredImageUrl" formControlName="featuredImageUrl" [readOnly]="!editState">
+    </div>
+
+    <div class="form-group my-1">
+      <label for="requiredSubscription">Påkrævet Abonnement:</label>
+      <select class="form-control" id="requiredSubscription" formControlName="requiredSubscription">
+        <option [ngValue]=1 selected>Ingen</option>
+        <option [ngValue]=2>Afprøver</option>
+        <option [ngValue]=3>Fuldt</option>
+      </select>
+    </div>
+
+    <div class="form-group my-2">
+      <label for="content">Content:</label>
+      <angular-editor formControlName="content" id="content" [config]="editorConfig"></angular-editor>
+
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-6">
+        <button type="submit" class="btn btn-outline-primary w-100">
+          <span *ngIf="!editState; then cantEdit else canEdit"></span>
+          <ng-template #canEdit>
+            Gem
+          </ng-template>
+          <ng-template #cantEdit>
+            Redigér
+          </ng-template>
+        </button>
+      </div>
+      <div class="col-6">
+        <span *ngIf="!editState; then goBackBtn else cancelBtn"></span>
+        <ng-template #goBackBtn>
+          <button (click)="goBack()" class="btn btn-outline-warning w-100">Tilbage</button>
+        </ng-template>
+        <ng-template #cancelBtn>
+          <button (click)="cancel()" class="btn btn-outline-warning w-100">Afbryd</button>
+        </ng-template>
+      </div>
+    </div>
+    <div class="row mt-3" *ngIf="formError">
+      <div class="col">
+        <div class="alert alert-danger" role="alert">
+          Fejl: {{formErrorMessage}}
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

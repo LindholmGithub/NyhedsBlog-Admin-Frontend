@@ -53,8 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'post/delete/:id', component: PostsDeleteComponent
-  },
-
+  }
 ];
 
 @NgModule({

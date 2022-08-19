@@ -4,10 +4,12 @@ import {UserDto} from "../usersService/user.dto";
 export interface PostDto{
   id: number;
   category: CategoryDto;
+  categoryId: number;
   title: string;
   featuredImageUrl: string;
   content: string;
   author: UserDto;
-  //requiredSubscription: number;
+  authorId: number;
+  requiredSubscription: number;
   date: Date;
 }

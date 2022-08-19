@@ -15,6 +15,7 @@ import { PostsCreateComponent } from './posts/posts-create/posts-create.componen
 import { PostsEditComponent } from './posts/posts-edit/posts-edit.component';
 import { PostsDeleteComponent } from './posts/posts-delete/posts-delete.component';
 import { PostsReadComponent } from './posts/posts-read/posts-read.component';
+import {AngularEditorModule} from "@kolkov/angular-editor";
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PostsReadComponent } from './posts/posts-read/posts-read.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularEditorModule
   ]
 })
 export class AdminModule { }

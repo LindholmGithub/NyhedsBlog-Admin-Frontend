@@ -1,1 +1,55 @@
-<p>posts-create works!</p>
+<h2 class="text-center">Opret Opslag</h2>
+
+<div class="col col-md-9 mx-auto">
+  <form [formGroup]="createForm" (ngSubmit)="doCreate()">
+    <input type="hidden" formControlName="authorId">
+    <div class="form-group my-2">
+      <label for="post">Overskrift</label>
+      <input type="text" class="form-control" placeholder="Overskrift her..." id="post" formControlName="title">
+    </div>
+
+    <div class="form-group">
+      <label for="category">Kategori:</label>
+      <select class="form-control" id="category" formControlName="categoryId" *ngIf="categories$ | async as categories" required>
+        <option value=""disabled selected hidden>Vælg kategori her...</option>
+        <option *ngFor="let category of categories" [ngValue]="category.id">{{category.title}}</option>
+      </select>
+    </div>
+
+    <div class="form-group my-2">
+      <label for="featuredImageUrl">Billede URL:</label>
+      <input type="text" class="form-control" placeholder="Billede URL her..." id="featuredImageUrl" formControlName="featuredImageUrl">
+    </div>
+
+    <div class="form-group my-1">
+      <label for="requiredSubscription">Påkrævet Abonnement:</label>
+      <select class="form-control" id="requiredSubscription" formControlName="requiredSubscription" required>
+        <option value=""disabled selected hidden>Vælg abonnement type her...</option>
+        <option [ngValue]=1>Ingen</option>
+        <option [ngValue]=2>Afprøver</option>
+        <option [ngValue]=3>Fuldt</option>
+      </select>
+    </div>
+
+    <div class="form-group my-2">
+      <label for="content">Content:</label>
+      <angular-editor formControlName="content" [config]="editorConfig" id="content"></angular-editor>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-6">
+        <button type="submit" class="btn btn-outline-primary w-100">Gem</button>
+      </div>
+      <div class="col-6">
+        <button type="reset" class="btn btn-outline-danger w-100">Nulstil</button>
+      </div>
+    </div>
+    <div class="row mt-3" *ngIf="formError">
+      <div class="col">
+        <div class="alert alert-danger" role="alert">
+          Fejl: {{ formErrorMessage }}
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

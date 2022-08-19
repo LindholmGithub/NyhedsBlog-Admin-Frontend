@@ -29,7 +29,7 @@ export class PostsService {
   }
 
   update(id: number, post: PostDto): Observable<PostDto>{
-    return this._http.put<PostDto>(environment.api + '/api/post' + id, post)
+    return this._http.put<PostDto>(environment.api + '/api/post/' + id, post)
   }
 
 }

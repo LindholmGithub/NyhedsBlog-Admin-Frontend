@@ -1,25 +1,25 @@
-<h2 class="text-center">Edit Category</h2>
+<h2 class="text-center">Redigér Kategori</h2>
 
 <div class="col col-md-9 mx-auto">
   <form [formGroup]="editForm" (ngSubmit)="doEdit()">
     <div class="form-group my-2">
-      <label for="id">Category ID:</label>
+      <label for="id">Kategori ID:</label>
       <input type="number" class="form-control" id="id" formControlName="id" [readOnly]="true">
     </div>
 
     <div class="form-group my-2">
-      <label for="title">Title:</label>
-      <input type="text" class="form-control" placeholder="Title here..." id="title" formControlName="title" [readOnly]="!editState">
+      <label for="title">Titel:</label>
+      <input type="text" class="form-control" placeholder="Titel her..." id="title" formControlName="title" [readOnly]="!editState">
     </div>
 
     <div class="form-group my-2">
-      <label for="description">Description:</label>
-      <input type="text" class="form-control" placeholder="Description text here..." id="description" formControlName="description" [readOnly]="!editState">
+      <label for="description">Beskrivelse:</label>
+      <input type="text" class="form-control" placeholder="Beskrivelse her..." id="description" formControlName="description" [readOnly]="!editState">
     </div>
 
     <div class="form-group my-2">
-      <label for="prettyDescriptor">Pretty Descriptor:</label>
-      <input type="text" class="form-control" placeholder="Pretty Descriptor here..." id="prettyDescriptor" formControlName="prettyDescriptor" [readOnly]="!editState">
+      <label for="prettyDescriptor">URL:</label>
+      <input type="text" class="form-control" placeholder="URL spor her..." id="prettyDescriptor" formControlName="prettyDescriptor" [readOnly]="!editState">
     </div>
 
     <div class="row mt-3">
@@ -27,27 +27,27 @@
         <button type="submit" class="btn btn-outline-primary w-100">
           <span *ngIf="!editState; then cantEdit else canEdit"></span>
           <ng-template #canEdit>
-            Save
+            Gem
           </ng-template>
           <ng-template #cantEdit>
-            Edit
+            Redigér
           </ng-template>
         </button>
       </div>
       <div class="col-6">
         <span *ngIf="!editState; then goBackBtn else cancelBtn"></span>
         <ng-template #goBackBtn>
-          <button (click)="goBack()" class="btn btn-outline-warning w-100">Back</button>
+          <button (click)="goBack()" class="btn btn-outline-warning w-100">Tilbage</button>
         </ng-template>
         <ng-template #cancelBtn>
-          <button (click)="editState = !editState" class="btn btn-outline-warning w-100">Cancel</button>
+          <button (click)="editState = !editState" class="btn btn-outline-warning w-100">Afbryd</button>
         </ng-template>
       </div>
     </div>
     <div class="row mt-3" *ngIf="formError">
       <div class="col">
         <div class="alert alert-danger" role="alert">
-          Error: {{formErrorMessage}}
+          Fejl: {{formErrorMessage}}
         </div>
       </div>
     </div>

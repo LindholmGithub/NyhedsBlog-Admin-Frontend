@@ -4,6 +4,6 @@ export interface PostCreateDto{
   featuredImageUrl: string;
   content: string;
   authorId: number;
-  //requiredSubscription: number;
+  requiredSubscription: number;
   date: Date;
 }

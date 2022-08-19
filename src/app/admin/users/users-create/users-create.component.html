@@ -1,41 +1,41 @@
-<h2 class="text-center">Create A User</h2>
+<h2 class="text-center">Opret Ny Bruger</h2>
 
 <div class="col col-md-9 mx-auto">
   <form [formGroup]="createForm" (ngSubmit)="doCreate()">
     <div class="form-group my-2">
-      <label for="firstname">First Name:</label>
-      <input type="text" class="form-control" placeholder="First name here..." id="firstname" formControlName="firstname">
+      <label for="firstname">Fornavn:</label>
+      <input type="text" class="form-control" placeholder="Fornavn her..." id="firstname" formControlName="firstname">
     </div>
 
     <div class="form-group my-2">
-      <label for="lastname">Last Name:</label>
-      <input type="text" class="form-control" placeholder="Last name here..." id="lastname" formControlName="lastname">
+      <label for="lastname">Efternavn:</label>
+      <input type="text" class="form-control" placeholder="Efternavn her..." id="lastname" formControlName="lastname">
     </div>
 
     <div class="form-group my-2">
       <label for="email">Email:</label>
-      <input type="text" class="form-control" placeholder="Address here..." id="email" formControlName="email">
+      <input type="text" class="form-control" placeholder="Addresse her..." id="email" formControlName="email">
     </div>
 
     <div class="form-group my-2">
-      <label for="phoneNumber">Phone Number:</label>
-      <input type="number" class="form-control" placeholder="Phone number here..." id="phoneNumber" formControlName="phoneNumber">
+      <label for="phoneNumber">Telefon:</label>
+      <input type="number" class="form-control" placeholder="Telefon her..." id="phoneNumber" formControlName="phoneNumber">
     </div>
 
     <div class="form-group my-2">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control" placeholder="Username here..." id="username" formControlName="username">
+      <label for="username">Brugernavn:</label>
+      <input type="text" class="form-control" placeholder="Brugernavn her..." id="username" formControlName="username">
     </div>
 
     <div class="form-group my-2">
-      <label for="password">Password:</label>
-      <input type="password" class="form-control" placeholder="Password here..." id="password" formControlName="password">
+      <label for="password">Kodeord:</label>
+      <input type="password" class="form-control" placeholder="Kodeord her..." id="password" formControlName="password">
     </div>
 
     <div class="form-group my-1">
-      <label for="role">Role:</label>
+      <label for="role">Rolle:</label>
       <select class="form-control" id="role" formControlName="role">
-        <option [ngValue]=1 selected>Author</option>
+        <option [ngValue]=1 selected>Forfatter</option>
         <option [ngValue]=2>Moderator</option>
         <option [ngValue]=3>Administrator</option>
       </select>
@@ -43,16 +43,16 @@
 
     <div class="row mt-3">
       <div class="col-6">
-        <button type="submit" class="btn btn-outline-primary w-100">Save</button>
+        <button type="submit" class="btn btn-outline-primary w-100">Gem</button>
       </div>
       <div class="col-6">
-        <button type="reset" class="btn btn-outline-danger w-100">Reset</button>
+        <button type="reset" class="btn btn-outline-danger w-100">Nulstil</button>
       </div>
     </div>
     <div class="row mt-3" *ngIf="formError">
       <div class="col">
         <div class="alert alert-danger" role="alert">
-          Error: {{ formErrorMessage }}
+          Fejl: {{ formErrorMessage }}
         </div>
       </div>
     </div>
