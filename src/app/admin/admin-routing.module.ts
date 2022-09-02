@@ -13,6 +13,10 @@ import {PostsReadComponent} from "./posts/posts-read/posts-read.component";
 import {PostsCreateComponent} from "./posts/posts-create/posts-create.component";
 import {PostsEditComponent} from "./posts/posts-edit/posts-edit.component";
 import {PostsDeleteComponent} from "./posts/posts-delete/posts-delete.component";
+import {PagesReadComponent} from "./pages/pages-read/pages-read.component";
+import {PagesCreateComponent} from "./pages/pages-create/pages-create.component";
+import {PagesEditComponent} from "./pages/pages-edit/pages-edit.component";
+import {PagesDeleteComponent} from "./pages/pages-delete/pages-delete.component";
 
 const routes: Routes = [
   {
@@ -53,6 +57,18 @@ const routes: Routes = [
   },
   {
     path: 'post/delete/:id', component: PostsDeleteComponent
+  },
+  {
+    path: 'page', component: PagesReadComponent
+  },
+  {
+    path: 'page/create', component: PagesCreateComponent
+  },
+  {
+    path: 'page/edit/:id', component: PagesEditComponent
+  },
+  {
+    path: 'page/delete/:id', component: PagesDeleteComponent
   }
 ];
 

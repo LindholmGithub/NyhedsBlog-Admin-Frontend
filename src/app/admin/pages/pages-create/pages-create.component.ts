@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {PagesService} from "../../../shared/pagesService/pages.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {PageCreateDto} from "../../../shared/pagesService/pagesCreate.dto";
+import {ErrorDto} from "../../../shared/error.dto";
+import {AngularEditorConfig} from "@kolkov/angular-editor";
 
 @Component({
   selector: 'app-pages-create',
@@ -7,9 +13,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesCreateComponent implements OnInit {
 
-  constructor() { }
+  error: any;
+  createForm = new FormGroup({
+    title: new FormControl('',Validators.required),
+    prettyDescriptor: new FormControl('',Validators.required),
+    content: new FormControl('', Validators.required),
+    authorId: new FormControl('1')
+  });
+  formError: boolean = false;
+  formErrorMessage: string | undefined;
+
+  constructor(private _pagesService: PagesService,
+              private _router: Router,
+              private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.createForm.get('title')?.valueChanges.subscribe(x => {
+      this.createForm.get('prettyDescriptor')?.setValue(x.replaceAll(" ", "-").toLowerCase())
+    })
   }
+
+  doCreate(){
+    let page = this.createForm.value as PageCreateDto;
+    this._pagesService.save(page).subscribe(p => {
+      this._router.navigateByUrl('/page').then(r => {});
+    }, error => {
+      this.formError = true;
+      this.formErrorMessage = (error.error as ErrorDto).message
+      }
+    );
+  }
+
+  get title(){
+    return this.createForm.get('title')
+  }
+
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    minHeight: "10rem",
+    height: "20rem"
+  };
 
 }
