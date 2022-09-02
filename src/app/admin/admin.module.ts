@@ -16,6 +16,11 @@ import { PostsEditComponent } from './posts/posts-edit/posts-edit.component';
 import { PostsDeleteComponent } from './posts/posts-delete/posts-delete.component';
 import { PostsReadComponent } from './posts/posts-read/posts-read.component';
 import {AngularEditorModule} from "@kolkov/angular-editor";
+import { PagesCreate } from './pages/pages-create/pages-create.component/pages-create.component.component';
+import { PagesCreateComponent } from './pages/pages-create/pages-create.component';
+import { PagesDeleteComponent } from './pages/pages-delete/pages-delete.component';
+import { PagesEditComponent } from './pages/pages-edit/pages-edit.component';
+import { PagesReadComponent } from './pages/pages-read/pages-read.component';
 
 
 @NgModule({
@@ -32,7 +37,12 @@ import {AngularEditorModule} from "@kolkov/angular-editor";
     PostsCreateComponent,
     PostsEditComponent,
     PostsDeleteComponent,
-    PostsReadComponent
+    PostsReadComponent,
+    PagesCreate.ComponentComponent,
+    PagesCreateComponent,
+    PagesDeleteComponent,
+    PagesEditComponent,
+    PagesReadComponent
   ],
   imports: [
     CommonModule,
