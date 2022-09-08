@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {UsersService} from "../../../shared/usersService/users.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserDto} from "../../../shared/usersService/user.dto";
@@ -14,15 +14,15 @@ export class UsersEditComponent implements OnInit {
   editState: boolean;
 
   selectedId: number | undefined;
-  editForm = new FormGroup({
-    id: new FormControl(''),
-    firstname: new FormControl('',Validators.required),
-    lastname: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.required),
-    phoneNumber: new FormControl('',Validators.required),
-    username: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required),
-    role: new FormControl('',Validators.required),
+  editForm = new UntypedFormGroup({
+    id: new UntypedFormControl(''),
+    firstname: new UntypedFormControl('',Validators.required),
+    lastname: new UntypedFormControl('',Validators.required),
+    email: new UntypedFormControl('',Validators.required),
+    phoneNumber: new UntypedFormControl('',Validators.required),
+    username: new UntypedFormControl('',Validators.required),
+    password: new UntypedFormControl('',Validators.required),
+    role: new UntypedFormControl('',Validators.required),
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;

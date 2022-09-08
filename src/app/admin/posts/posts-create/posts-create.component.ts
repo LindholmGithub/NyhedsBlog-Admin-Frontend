@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {catchError, Observable} from "rxjs";
 import {PostDto} from "../../../shared/postsService/posts.dto";
 import {CategoryDto} from "../../../shared/categoriesService/categories.dto";
@@ -21,15 +21,15 @@ export class PostsCreateComponent implements OnInit {
   error: any;
 
 
-  createForm = new FormGroup({
-    title: new FormControl('',Validators.required),
-    categoryId: new FormControl('',Validators.required),
-    prettyDescriptor: new FormControl('',Validators.required),
-    featuredImageUrl: new FormControl('',Validators.required),
-    requiredSubscription: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.compose(
+  createForm = new UntypedFormGroup({
+    title: new UntypedFormControl('',Validators.required),
+    categoryId: new UntypedFormControl('',Validators.required),
+    prettyDescriptor: new UntypedFormControl('',Validators.required),
+    featuredImageUrl: new UntypedFormControl('',Validators.required),
+    requiredSubscription: new UntypedFormControl('', Validators.required),
+    content: new UntypedFormControl('', Validators.compose(
       [Validators.minLength(400), Validators.required])),
-    authorId: new FormControl('1')
+    authorId: new UntypedFormControl('1')
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;

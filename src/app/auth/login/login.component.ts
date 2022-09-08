@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../shared/authService/auth.service";
 import {Router} from "@angular/router";
 import {LoginDto} from "../../shared/authService/login.dto";
@@ -10,9 +10,9 @@ import {LoginDto} from "../../shared/authService/login.dto";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
+  loginForm = new UntypedFormGroup({
+    username: new UntypedFormControl('', Validators.required),
+    password: new UntypedFormControl('', Validators.required)
   });
 
   formError: boolean = false;

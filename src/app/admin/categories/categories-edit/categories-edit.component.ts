@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {CategoriesService} from "../../../shared/categoriesService/categories.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CategoryDto} from "../../../shared/categoriesService/categories.dto";
@@ -13,11 +13,11 @@ export class CategoriesEditComponent implements OnInit {
   editState: boolean;
 
   selectedId: number | undefined;
-  editForm = new FormGroup({
-    id: new FormControl(''),
-    title: new FormControl('',Validators.required),
-    description: new FormControl('',Validators.required),
-    prettyDescriptor: new FormControl('', Validators.required)
+  editForm = new UntypedFormGroup({
+    id: new UntypedFormControl(''),
+    title: new UntypedFormControl('',Validators.required),
+    description: new UntypedFormControl('',Validators.required),
+    prettyDescriptor: new UntypedFormControl('', Validators.required)
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;

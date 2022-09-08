@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {PagesService} from "../../../shared/pagesService/pages.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PageCreateDto} from "../../../shared/pagesService/pagesCreate.dto";
@@ -14,11 +14,11 @@ import {AngularEditorConfig} from "@kolkov/angular-editor";
 export class PagesCreateComponent implements OnInit {
 
   error: any;
-  createForm = new FormGroup({
-    title: new FormControl('',Validators.required),
-    prettyDescriptor: new FormControl('',Validators.required),
-    content: new FormControl('', Validators.required),
-    authorId: new FormControl('1')
+  createForm = new UntypedFormGroup({
+    title: new UntypedFormControl('',Validators.required),
+    prettyDescriptor: new UntypedFormControl('',Validators.required),
+    content: new UntypedFormControl('', Validators.required),
+    authorId: new UntypedFormControl('1')
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;

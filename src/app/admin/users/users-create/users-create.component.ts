@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UsersService} from "../../../shared/usersService/users.service";
 import {UserCreateDto} from "../../../shared/usersService/userCreate.dto";
@@ -12,14 +12,14 @@ import {ErrorDto} from "../../../shared/error.dto";
   styleUrls: ['./users-create.component.css']
 })
 export class UsersCreateComponent implements OnInit {
-  createForm = new FormGroup({
-    firstname: new FormControl('',Validators.required),
-    lastname: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.required),
-    phoneNumber: new FormControl('',Validators.required),
-    username: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required),
-    role: new FormControl('',Validators.required),
+  createForm = new UntypedFormGroup({
+    firstname: new UntypedFormControl('',Validators.required),
+    lastname: new UntypedFormControl('',Validators.required),
+    email: new UntypedFormControl('',Validators.required),
+    phoneNumber: new UntypedFormControl('',Validators.required),
+    username: new UntypedFormControl('',Validators.required),
+    password: new UntypedFormControl('',Validators.required),
+    role: new UntypedFormControl('',Validators.required),
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;

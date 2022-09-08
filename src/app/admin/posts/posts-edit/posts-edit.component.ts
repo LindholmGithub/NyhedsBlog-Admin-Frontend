@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {PostsService} from "../../../shared/postsService/posts.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CategoryDto} from "../../../shared/categoriesService/categories.dto";
@@ -22,15 +22,15 @@ export class PostsEditComponent implements OnInit {
 
   selectedId: number | undefined;
 
-  editForm = new FormGroup({
-    id: new FormControl(''),
-    title: new FormControl('',Validators.required),
-    categoryId: new FormControl('',Validators.required),
-    prettyDescriptor: new FormControl('',Validators.required),
-    featuredImageUrl: new FormControl('',Validators.required),
-    requiredSubscription: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.required),
-    authorId: new FormControl('')
+  editForm = new UntypedFormGroup({
+    id: new UntypedFormControl(''),
+    title: new UntypedFormControl('',Validators.required),
+    categoryId: new UntypedFormControl('',Validators.required),
+    prettyDescriptor: new UntypedFormControl('',Validators.required),
+    featuredImageUrl: new UntypedFormControl('',Validators.required),
+    requiredSubscription: new UntypedFormControl('', Validators.required),
+    content: new UntypedFormControl('', Validators.required),
+    authorId: new UntypedFormControl('')
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;

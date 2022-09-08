@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {CategoriesService} from "../../../shared/categoriesService/categories.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CategoryCreateDto} from "../../../shared/categoriesService/categoriesCreate.dto";
@@ -11,10 +11,10 @@ import {ErrorDto} from "../../../shared/error.dto";
   styleUrls: ['./categories-create.component.css']
 })
 export class CategoriesCreateComponent implements OnInit {
-  createForm = new FormGroup({
-    title: new FormControl('',Validators.required),
-    description: new FormControl('',Validators.required),
-    prettyDescriptor: new FormControl('',Validators.required)
+  createForm = new UntypedFormGroup({
+    title: new UntypedFormControl('',Validators.required),
+    description: new UntypedFormControl('',Validators.required),
+    prettyDescriptor: new UntypedFormControl('',Validators.required)
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;
