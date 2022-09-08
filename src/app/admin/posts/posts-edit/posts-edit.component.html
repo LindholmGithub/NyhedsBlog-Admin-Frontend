@@ -21,6 +21,11 @@
     </div>
 
     <div class="form-group my-2">
+      <label for="prettyDescriptor">URL:</label>
+      <input type="text" class="form-control" placeholder="URL her..." id="prettyDescriptor" formControlName="prettyDescriptor" [readOnly]="!editState">
+    </div>
+
+    <div class="form-group my-2">
       <label for="featuredImageUrl">Billede URL:</label>
       <input type="text" class="form-control" placeholder="Billede URL her..." id="featuredImageUrl" formControlName="featuredImageUrl" [readOnly]="!editState">
     </div>
@@ -29,8 +34,8 @@
       <label for="requiredSubscription">Påkrævet Abonnement:</label>
       <select class="form-control" id="requiredSubscription" formControlName="requiredSubscription">
         <option [ngValue]=1 selected>Ingen</option>
-        <option [ngValue]=2>Afprøver</option>
-        <option [ngValue]=3>Fuldt</option>
+        <option [ngValue]=2>Prøveperiode</option>
+        <option [ngValue]=3>Fuldt Abonnement</option>
       </select>
     </div>
 

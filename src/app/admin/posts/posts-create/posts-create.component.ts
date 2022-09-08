@@ -24,9 +24,11 @@ export class PostsCreateComponent implements OnInit {
   createForm = new FormGroup({
     title: new FormControl('',Validators.required),
     categoryId: new FormControl('',Validators.required),
+    prettyDescriptor: new FormControl('',Validators.required),
     featuredImageUrl: new FormControl('',Validators.required),
     requiredSubscription: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.required),
+    content: new FormControl('', Validators.compose(
+      [Validators.minLength(400), Validators.required])),
     authorId: new FormControl('1')
   });
   formError: boolean = false;
@@ -39,6 +41,9 @@ export class PostsCreateComponent implements OnInit {
               private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.createForm.get('title')?.valueChanges.subscribe(x => {
+      this.createForm.get('prettyDescriptor')?.setValue(x.replaceAll(" ", "-").toLowerCase())
+    })
     this.categories$ = this._categoriesService.getAll()
       .pipe(
         catchError(err => {

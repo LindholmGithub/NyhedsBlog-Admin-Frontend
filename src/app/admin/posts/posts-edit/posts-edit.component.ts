@@ -26,6 +26,7 @@ export class PostsEditComponent implements OnInit {
     id: new FormControl(''),
     title: new FormControl('',Validators.required),
     categoryId: new FormControl('',Validators.required),
+    prettyDescriptor: new FormControl('',Validators.required),
     featuredImageUrl: new FormControl('',Validators.required),
     requiredSubscription: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),

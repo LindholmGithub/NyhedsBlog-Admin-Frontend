@@ -7,6 +7,7 @@
       <th scope="col">ID</th>
       <th scope="col">Overskrift</th>
       <th scope="col">Kategori</th>
+      <th scope="col">URL</th>
       <th scope="col">Forfatter</th>
       <th scope="col">Dato</th>
       <th scope="col">Valgmuligheder</th>
@@ -17,6 +18,7 @@
       <td>{{post.id}}</td>
       <td>{{post.title}}</td>
       <td>{{post.category.title}}</td>
+      <td>{{post.prettyDescriptor}}</td>
       <td>{{post.author.firstname}} {{post.author.lastname}}</td>
       <td>{{post.date}}</td>
       <td><a routerLink="/post/edit/{{post.id}}">Redigér</a> | <a routerLink="/post/delete/{{post.id}}">Slet</a></td>

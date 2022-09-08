@@ -6,6 +6,7 @@ export interface PostDto{
   category: CategoryDto;
   categoryId: number;
   title: string;
+  prettyDescriptor: string;
   featuredImageUrl: string;
   content: string;
   author: UserDto;
