@@ -1,26 +1,27 @@
 <div class="container d-flex flex-column min-vh-100">
   <div class="w-50 mx-auto my-auto">
-    <div class="w-100 text-center"><img style="max-width:225px;" src="https://status1.dk/images/logo-web.png" /></div>
-    <form method="post" action="https://status1-azure.azurewebsites.net/api/auth" class="border shadow rounded p-0">
-      <input type="hidden" name="_token" value="ukzPtL45I4ewAkzS9ef6E5KwVU9hYPUxDWgRhIsV">            <input type="hidden" name="redirect" value="https://status1.dk/validate-login" />
+    <div class="w-100 text-center">
+      <img style="max-width:225px;" src="https://status1.dk/images/logo-web.png" />
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="border shadow rounded p-0">
+      <div class="w-100 m-0 bg-light rounded-top text-center py-1">
+        <h4>Log ind</h4>
+      </div>
 
-      <div class="w-100 m-0 bg-light rounded-top text-center py-1"><h4>Log ind</h4></div>
-
+      <div class="alert alert-danger" role="alert" *ngIf="formError">
+        {{ formErrorMessage }}
+      </div>
 
       <div class="w-100 m-0 px-3 pt-3 pb-2">
         <div class="mb-3">
           <label for="email" class="form-label">E-mail adresse:</label>
-          <input type="text" class="form-control" id="email" name="username" />
+          <input type="text" class="form-control" id="email" name="username" formControlName="username" required autofocus />
         </div>
-
         <div class="mb-3">
-
           <label for="password" class="form-label">Adgangskode:</label>
-          <input type="password" class="form-control" id="password" name="password" />
+          <input type="password" class="form-control" id="password" name="password" formControlName="password" required />
         </div>
-
         <button type="submit" class="btn btn-primary w-100 mb-2">Log ind</button>
-
         <p class="text-center"><small>Har du glemt din adgangskode? <a href="/log-ind/glemt-adgangskode">Tryk her for at nulstille.</a></small></p>
       </div>
     </form>

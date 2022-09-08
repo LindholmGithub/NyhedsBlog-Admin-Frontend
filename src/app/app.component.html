@@ -64,6 +64,19 @@
     -->
 
   </div>
+
+  <div class="navbar-nav">
+    <div class="nav-item dropdown text-nowrap" *ngIf="userProfile$ | async as userProfile">
+      <a class="nav-link dropdown-toggle px-3" href="#" role="button" data-bs-toggle="dropdown">{{ userProfile.firstname }} {{ userProfile.lastname }}</a>
+
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" routerLink="/user/profile">Din profil</a></li>
+        <li><a class="dropdown-item disabled" routerLink="/" disabled="disabled">Indstillinger</a></li>
+        <li><div class="dropdown-divider"></div></li>
+        <li><a class="dropdown-item" routerLink="auth/logout">Log ud</a></li>
+      </ul>
+    </div>
+  </div>
 </header>
 
 <main class="container-fluid px-5 py-3">

@@ -66,8 +66,9 @@ export class AuthService {
     return of(true).pipe(take(1));
   }
 
-  getUser(): UserDto {
-    return <UserDto>this.currentProfile;
+  getUser(): Observable<UserDto> {
+    // @ts-ignore
+    return this._users.getOne(parseInt(localStorage.getItem('userId')));
   }
 
 }

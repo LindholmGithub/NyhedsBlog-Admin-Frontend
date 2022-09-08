@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {UserDto} from "./shared/usersService/user.dto";
 import {AuthService} from "./shared/authService/auth.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -12,14 +13,14 @@ export class AppComponent {
 
   base64: string | null | undefined;
 
-  userProfile: UserDto | undefined;
+  userProfile$: Observable<UserDto> | undefined;
 
   constructor(private _auth: AuthService) {
     _auth.isLoggedIn$.subscribe(token => {
       this.base64 = token;
 
       if(token) {
-        this.userProfile = _auth.getUser();
+        this.userProfile$ = _auth.getUser();
       }
     })
   }
