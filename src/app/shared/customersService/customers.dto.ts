@@ -1,10 +1,12 @@
-export interface UserDto {
+export interface CustomerDto {
   id: number;
   firstname: string;
   lastname: string;
-  phoneNumber: number;
+  address: string;
+  zipcode: number;
+  city: string;
   email: string;
+  phoneNumber: number;
   username: string;
   password: string;
-  role: number;
 }

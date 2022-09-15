@@ -20,6 +20,10 @@ import { PagesCreateComponent } from './pages/pages-create/pages-create.componen
 import { PagesDeleteComponent } from './pages/pages-delete/pages-delete.component';
 import { PagesEditComponent } from './pages/pages-edit/pages-edit.component';
 import { PagesReadComponent } from './pages/pages-read/pages-read.component';
+import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
+import { CustomerReadComponent } from './customer/customer-read/customer-read.component';
+import { CustomerDeleteComponent } from './customer/customer-delete/customer-delete.component';
+import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
 
 
 @NgModule({
@@ -40,7 +44,11 @@ import { PagesReadComponent } from './pages/pages-read/pages-read.component';
     PagesCreateComponent,
     PagesDeleteComponent,
     PagesEditComponent,
-    PagesReadComponent
+    PagesReadComponent,
+    CustomerCreateComponent,
+    CustomerReadComponent,
+    CustomerDeleteComponent,
+    CustomerEditComponent
   ],
   imports: [
     CommonModule,

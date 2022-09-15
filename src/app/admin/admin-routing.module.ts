@@ -17,6 +17,10 @@ import {PagesReadComponent} from "./pages/pages-read/pages-read.component";
 import {PagesCreateComponent} from "./pages/pages-create/pages-create.component";
 import {PagesEditComponent} from "./pages/pages-edit/pages-edit.component";
 import {PagesDeleteComponent} from "./pages/pages-delete/pages-delete.component";
+import {CustomerReadComponent} from "./customer/customer-read/customer-read.component";
+import {CustomerCreateComponent} from "./customer/customer-create/customer-create.component";
+import {CustomerEditComponent} from "./customer/customer-edit/customer-edit.component";
+import {CustomerDeleteComponent} from "./customer/customer-delete/customer-delete.component";
 
 const routes: Routes = [
   {
@@ -69,6 +73,18 @@ const routes: Routes = [
   },
   {
     path: 'page/delete/:id', component: PagesDeleteComponent
+  },
+  {
+    path: 'customer', component: CustomerReadComponent
+  },
+  {
+    path: 'customer/create', component: CustomerCreateComponent
+  },
+  {
+    path: 'customer/edit/:id', component: CustomerEditComponent
+  },
+  {
+    path: 'customer/delete/:id', component: CustomerDeleteComponent
   }
 ];
 

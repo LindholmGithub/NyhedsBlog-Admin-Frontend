@@ -1,0 +1,35 @@
+<h2 class="text-center">Alle Kunder</h2>
+
+<div class="table-responsive" *ngIf="customers$ | async as customers else loading">
+  <table class="table table-striped table-sm" *ngIf="customers && customers.length > 0 else noCustomers">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Navn</th>
+      <th scope="col">Addresse</th>
+      <th scope="col">Kommune</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefon</th>
+      <th scope="col">Valgmuligheder</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{customer.id}}</td>
+      <td>{{customer.firstname}} {{customer.lastname}}</td>
+      <td>{{customer.address}}</td>
+      <td>{{customer.zipcode}} {{customer.city}} </td>
+      <td>{{customer.email}}</td>
+      <td>{{customer.phoneNumber}}</td>
+      <td><a routerLink="/customer/edit/{{customer.id}}">Redigér</a> | <a routerLink="/customer/delete/{{customer.id}}">Slet</a></td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-template #noCustomers>
+    <h6 class="text-center">Ingen kunder fundet!</h6>
+  </ng-template>
+</div>
+
+<ng-template #loading>
+  <p>Indlæser...</p>
+</ng-template>

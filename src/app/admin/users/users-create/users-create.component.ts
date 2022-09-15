@@ -12,15 +12,16 @@ import {ErrorDto} from "../../../shared/error.dto";
   styleUrls: ['./users-create.component.css']
 })
 export class UsersCreateComponent implements OnInit {
+
   createForm = new UntypedFormGroup({
     firstname: new UntypedFormControl('',Validators.required),
     lastname: new UntypedFormControl('',Validators.required),
-    email: new UntypedFormControl('',Validators.required),
     phoneNumber: new UntypedFormControl('',Validators.required),
-    username: new UntypedFormControl('',Validators.required),
+    email: new UntypedFormControl('',Validators.required),
     password: new UntypedFormControl('',Validators.required),
     role: new UntypedFormControl('',Validators.required),
   });
+
   formError: boolean = false;
   formErrorMessage: string | undefined;
 
@@ -37,24 +38,17 @@ export class UsersCreateComponent implements OnInit {
     return this.createForm.get('lastname')
   }
 
-  get email(){
-    return this.createForm.get('email')
-  }
-
   get phoneNumber(){
     return this.createForm.get('phoneNumber')
   }
 
-  get username(){
-    return this.createForm.get('username')
-  }
-
-  get password(){
-    return this.createForm.get('password')
+  get email(){
+    return this.createForm.get('email')
   }
 
   doCreate(): void{
     let user = this.createForm.value as UserCreateDto;
+    user.username = this.createForm.get('email')?.value;
     this._usersService.save(user).subscribe(user => {
       this._router.navigateByUrl('/user').then(r => {});
     }, error => {
