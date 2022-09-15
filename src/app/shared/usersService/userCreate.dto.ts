@@ -5,5 +5,4 @@ export interface UserCreateDto {
   phoneNumber: number;
   username: string;
   password: string;
-  role: number;
 }

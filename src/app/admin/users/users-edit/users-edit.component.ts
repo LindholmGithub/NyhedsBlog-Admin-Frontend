@@ -22,7 +22,6 @@ export class UsersEditComponent implements OnInit {
     phoneNumber: new UntypedFormControl('',Validators.required),
     username: new UntypedFormControl('',Validators.required),
     password: new UntypedFormControl('',Validators.required),
-    role: new UntypedFormControl('',Validators.required),
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;
@@ -58,10 +57,6 @@ export class UsersEditComponent implements OnInit {
     return this.editForm.get('phoneNumber')
   }
 
-  get role(){
-    return this.editForm.get('role')
-  }
-
   doEdit(): void {
     if (!this.editState) {
       this.editState = !this.editState;
@@ -69,7 +64,7 @@ export class UsersEditComponent implements OnInit {
     }
 
     let user = this.editForm.value as UserDto;
-
+    user.username = this.editForm.get('email')?.value
     this._usersService.update(user.id,user).subscribe(user =>{
       this.editState = !this.editState;
       this.loadUsers();

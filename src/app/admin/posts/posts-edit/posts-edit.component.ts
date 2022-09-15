@@ -28,7 +28,6 @@ export class PostsEditComponent implements OnInit {
     categoryId: new UntypedFormControl('',Validators.required),
     prettyDescriptor: new UntypedFormControl('',Validators.required),
     featuredImageUrl: new UntypedFormControl('',Validators.required),
-    requiredSubscription: new UntypedFormControl('', Validators.required),
     content: new UntypedFormControl('', Validators.required),
     authorId: new UntypedFormControl('')
   });

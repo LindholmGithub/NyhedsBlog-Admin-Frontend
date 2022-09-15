@@ -19,7 +19,6 @@ export class UsersCreateComponent implements OnInit {
     phoneNumber: new UntypedFormControl('',Validators.required),
     email: new UntypedFormControl('',Validators.required),
     password: new UntypedFormControl('',Validators.required),
-    role: new UntypedFormControl('',Validators.required),
   });
 
   formError: boolean = false;

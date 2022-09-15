@@ -11,6 +11,7 @@ export interface PostDto{
   content: string;
   author: UserDto;
   authorId: number;
-  requiredSubscription: number;
   date: Date;
+  paid: boolean;
+  price: number;
 }

@@ -9,7 +9,6 @@
       <th scope="col">Efternavn</th>
       <th scope="col">Telefon</th>
       <th scope="col">Email</th>
-      <th scope="col">Rolle</th>
       <th scope="col">Valgmuligheder</th>
     </tr>
     </thead>
@@ -20,15 +19,6 @@
       <td>{{user.lastname}}</td>
       <td>{{user.phoneNumber}}</td>
       <td>{{user.email}}</td>
-      <td *ngIf="user.role === 1">
-        Forfatter
-      </td>
-      <td *ngIf="user.role === 2">
-        Moderator
-      </td>
-      <td *ngIf="user.role === 3">
-        Administrator
-      </td>
       <td><a routerLink="/user/edit/{{user.id}}">Redigér</a> | <a routerLink="/user/delete/{{user.id}}">Slet</a></td>
     </tr>
     </tbody>

@@ -27,13 +27,17 @@
     </div>
 
     <div class="form-group my-1">
-      <label for="requiredSubscription">Påkrævet Abonnement:</label>
-      <select class="form-control" id="requiredSubscription" formControlName="requiredSubscription" required>
-        <option value=""disabled selected hidden>Vælg abonnement type her...</option>
-        <option [ngValue]=1>Ingen</option>
-        <option [ngValue]=2>Prøveperiode</option>
-        <option [ngValue]=3>Fuldt Abonnement</option>
+      <label for="paid">Betalingsopslag:</label>
+      <select class="form-control" formControlName="paid" id="paid" required>
+        <option value="" disabled selected hidden>Vælg betaling her...</option>
+        <option value="true">Ja</option>
+        <option value="false">Nej</option>
       </select>
+    </div>
+
+    <div class="form-group my-2" [hidden]="!paidPost">
+      <label for="price">Pris:</label>
+      <input type="number" class="form-control" id="price" formControlName="price">
     </div>
 
     <div class="form-group my-2">

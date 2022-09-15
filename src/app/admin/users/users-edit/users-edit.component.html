@@ -27,15 +27,6 @@
       <input type="number" class="form-control" placeholder="Telefon her..." id="phoneNumber" formControlName="phoneNumber" [readOnly]="!editState">
     </div>
 
-    <div class="form-group my-2">
-      <label for="role">Rolle:</label>
-      <select class="form-control" id="role" formControlName="role" [attr.disabled]="!editState ? '' : null">
-        <option [ngValue]=1>Forfatter</option>
-        <option [ngValue]=2>Moderator</option>
-        <option [ngValue]=3>Administrator</option>
-      </select>
-    </div>
-
     <div class="row mt-3">
       <div class="col-6">
         <button type="submit" class="btn btn-outline-primary w-100">

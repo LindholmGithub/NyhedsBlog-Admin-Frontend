@@ -1,45 +1,45 @@
-<h2 class="text-center">Opret Ny Kunde</h2>
+<h2 class="text-center">Redigér Kunde</h2>
 
 <div class="col col-md-9 mx-auto">
   <form [formGroup]="editForm" (ngSubmit)="doEdit()">
     <div class="form-group my-2">
+      <label for="id">Kunde ID:</label>
+      <input type="number" class="form-control" id="id" formControlName="id" [readOnly]="true">
+    </div>
+
+    <div class="form-group my-2">
       <label for="firstname">Fornavn:</label>
-      <input type="text" class="form-control" placeholder="Fornavn her..." id="firstname" formControlName="firstname">
+      <input type="text" class="form-control" placeholder="Fornavn her..." id="firstname" formControlName="firstname" [readOnly]="!editState">
     </div>
 
     <div class="form-group my-2">
       <label for="lastname">Efternavn:</label>
-      <input type="text" class="form-control" placeholder="Efternavn her..." id="lastname" formControlName="lastname">
+      <input type="text" class="form-control" placeholder="Efternavn her..." id="lastname" formControlName="lastname" [readOnly]="!editState">
     </div>
 
     <div class="form-group my-2">
       <label for="address">Addresse:</label>
-      <input type="text" class="form-control" placeholder="Addresse her..." id="address" formControlName="address">
+      <input type="text" class="form-control" placeholder="Addresse her..." id="address" formControlName="address" [readOnly]="!editState">
     </div>
 
     <div class="form-group my-2">
       <label for="zipcode">Postnr:</label>
-      <input type="number" class="form-control" placeholder="Postnummer her..." id="zipcode" formControlName="zipcode">
+      <input type="number" class="form-control" placeholder="Postnummer her..." id="zipcode" formControlName="zipcode" [readOnly]="!editState">
     </div>
 
     <div class="form-group my-2">
       <label for="city">By:</label>
-      <input type="text" class="form-control" placeholder="Bynavn her..." id="city" formControlName="city">
+      <input type="text" class="form-control" placeholder="Bynavn her..." id="city" formControlName="city" [readOnly]="!editState">
     </div>
 
     <div class="form-group my-2">
       <label for="phoneNumber">Telefon:</label>
-      <input type="number" class="form-control" placeholder="Telefon her..." id="phoneNumber" formControlName="phoneNumber">
+      <input type="number" class="form-control" placeholder="Telefon her..." id="phoneNumber" formControlName="phoneNumber" [readOnly]="!editState">
     </div>
 
     <div class="form-group my-2">
       <label for="email">Email:</label>
-      <input type="text" class="form-control" placeholder="Email her..." id="email" formControlName="email">
-    </div>
-
-    <div class="form-group my-2">
-      <label for="password">Kodeord:</label>
-      <input type="password" class="form-control" placeholder="Kodeord her..." id="password" formControlName="password">
+      <input type="text" class="form-control" placeholder="Email her..." id="email" formControlName="email" [readOnly]="!editState">
     </div>
 
     <div class="row mt-3">
