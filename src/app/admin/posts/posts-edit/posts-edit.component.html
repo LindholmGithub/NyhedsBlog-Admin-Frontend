@@ -30,10 +30,38 @@
       <input type="text" class="form-control" placeholder="Billede URL her..." id="featuredImageUrl" formControlName="featuredImageUrl" [readOnly]="!editState">
     </div>
 
+    <div class="form-group my-1">
+      <label for="paid">Betalingsopslag:</label>
+      <select class="form-control" formControlName="paid" id="paid" required [attr.disabled]="!editState ? '' : null">
+        <option value="" disabled selected hidden>Vælg betaling her...</option>
+        <option value="true">Ja</option>
+        <option value="false">Nej</option>
+      </select>
+    </div>
+
+    <div class="form-group my-2" [hidden]="!paidPost">
+      <label for="price">Pris:</label>
+      <input type="number" class="form-control" id="price" formControlName="price">
+    </div>
+    <!--
     <div class="form-group my-2">
       <label for="content">Indhold:</label>
       <angular-editor formControlName="content" id="content" [config]="editorConfig"></angular-editor>
-
+    </div>
+    -->
+    <div class="form-group my-2">
+      <label for="content">Indhold (min. 400 tegn):</label>
+      <div class="NgxEditor__Wrapper">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+        <ngx-editor
+          [editor]="editor"
+          [disabled]="!editState"
+          [ngModel]="html"
+          [minlength]="400"
+          [placeholder]="'Type here...'"
+          formControlName="content"
+          id="content"></ngx-editor>
+      </div>
     </div>
 
     <div class="row mt-3">

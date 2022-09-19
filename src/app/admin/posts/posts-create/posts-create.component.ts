@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validator, Validators} from "@angular/forms";
 import {catchError, Observable} from "rxjs";
 import {PostDto} from "../../../shared/postsService/posts.dto";
@@ -9,13 +9,28 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PostCreateDto} from "../../../shared/postsService/postsCreate.dto";
 import {ErrorDto} from "../../../shared/error.dto";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
+import {Editor, Toolbar} from 'ngx-editor';
 
 @Component({
   selector: 'app-posts-create',
   templateUrl: './posts-create.component.html',
   styleUrls: ['./posts-create.component.css']
 })
-export class PostsCreateComponent implements OnInit {
+export class PostsCreateComponent implements OnInit, OnDestroy {
+  editor: Editor;
+  html: '' | undefined;
+
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+
   categories$: Observable<CategoryDto[]> | undefined
   error: any;
 
@@ -39,10 +54,11 @@ export class PostsCreateComponent implements OnInit {
   constructor(private _categoriesService: CategoriesService,
               private _postsService: PostsService,
               private _router: Router,
-              private _route: ActivatedRoute) { }
+              private _route: ActivatedRoute) {
+    this.editor = new Editor();
+  }
 
   ngOnInit(): void {
-
     this.createForm.get('paid')?.valueChanges.subscribe(x => {
       this.paidPost = x == "true";
       if (this.paidPost){
@@ -66,6 +82,10 @@ export class PostsCreateComponent implements OnInit {
       )
   }
 
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+
   doCreate() {
     let post = this.createForm.value as PostCreateDto;
     post.paid = this.paidPost
@@ -84,10 +104,10 @@ export class PostsCreateComponent implements OnInit {
     return this.createForm.get('title')
   }
 
-  editorConfig: AngularEditorConfig = {
-    editable: true,
-    minHeight: "10rem",
-    height: "20rem"
-  };
+  //editorConfig: AngularEditorConfig = {
+  //  editable: true,
+  //  minHeight: "10rem",
+  //  height: "20rem"
+  //};
 
 }

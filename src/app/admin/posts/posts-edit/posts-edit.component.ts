@@ -8,6 +8,7 @@ import {AngularEditorConfig, UploadResponse} from "@kolkov/angular-editor";
 import {catchError, Observable} from "rxjs";
 import {HttpEvent} from "@angular/common/http";
 import {CategoriesService} from "../../../shared/categoriesService/categories.service";
+import {Editor, Toolbar} from 'ngx-editor';
 
 @Component({
   selector: 'app-posts-edit',
@@ -15,10 +16,26 @@ import {CategoriesService} from "../../../shared/categoriesService/categories.se
   styleUrls: ['./posts-edit.component.css']
 })
 export class PostsEditComponent implements OnInit {
+  editor: Editor;
+  html: '' | undefined;
+
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+
   editState: boolean;
 
   categories$: Observable<CategoryDto[]> | undefined;
   error: any;
+
+  paidPost: boolean = false;
 
   selectedId: number | undefined;
 
@@ -28,6 +45,8 @@ export class PostsEditComponent implements OnInit {
     categoryId: new UntypedFormControl('',Validators.required),
     prettyDescriptor: new UntypedFormControl('',Validators.required),
     featuredImageUrl: new UntypedFormControl('',Validators.required),
+    paid: new UntypedFormControl('',Validators.required),
+    price: new UntypedFormControl('10'),
     content: new UntypedFormControl('', Validators.required),
     authorId: new UntypedFormControl('')
   });
@@ -39,11 +58,21 @@ export class PostsEditComponent implements OnInit {
               private _router: Router,
               private _route: ActivatedRoute) {
     this.editState = false;
+    this.editor = new Editor();
   }
 
   ngOnInit(): void {
     this.loadPosts();
-
+    this.editForm.get('paid')?.valueChanges.subscribe(x => {
+      this.paidPost = x == "true";
+      if (this.paidPost){
+        this.editForm.controls['price'].setValidators(Validators.required);
+      } else {
+        this.editForm.get('price')?.clearValidators();
+        this.editForm.get('price')?.updateValueAndValidity();
+      }
+    })
+    this.editForm.get('content')?.disable();
     this.categories$ = this._categoriesService.getAll()
       .pipe(
         catchError(err => {
@@ -58,6 +87,7 @@ export class PostsEditComponent implements OnInit {
     this._postsService.getOne(this.selectedId).subscribe(posts => {
       this.editForm.patchValue(posts);
       this.editForm.patchValue({
+        paid: posts.paid ? "true" : "false",
         authorId: posts.author.id,
         categoryId: posts.category.id
       });
@@ -80,13 +110,18 @@ export class PostsEditComponent implements OnInit {
 
     if (!this.editState){
       this.editState = !this.editState;
-      this.editorConfig.editable = this.editState;
+      this.editForm.get('content')?.enable();
       return;
     }
     let post = this.editForm.value as PostDto;
+    post.paid = this.paidPost
+    if (!this.paidPost){
+      post.price = 0
+    }
     this._postsService.update(post.id, post).subscribe(post =>{
       this.editState = !this.editState;
-      this.editorConfig.editable = this.editState;
+      //this.editorConfig.editable = this.editState;
+      this.editForm.get('content')?.disable();
       this.loadPosts();
     })
   }
@@ -95,11 +130,16 @@ export class PostsEditComponent implements OnInit {
     this._router.navigateByUrl('/post').then(r => {})
   }
 
-  editorConfig: AngularEditorConfig = {};
+  editorConfig: AngularEditorConfig = {
+    minHeight: "10rem",
+    height: "20rem"
+  };
 
   cancel() {
     this.loadPosts();
     this.editState = !this.editState;
-    this.editorConfig.editable = this.editState;
+    //this.editorConfig.editable = this.editState;
+    this.editForm.get('content')?.disable();
+
   }
 }
