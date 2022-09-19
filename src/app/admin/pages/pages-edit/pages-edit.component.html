@@ -18,10 +18,25 @@
       <input type="text" class="form-control" placeholder="URL spor her..." id="prettyDescriptor" formControlName="prettyDescriptor" [readOnly]="!editState">
     </div>
 
+    <!--
     <div class="form-group my-2">
       <label for="content">Indhold:</label>
       <angular-editor formControlName="content" id="content" [config]="editorConfig"></angular-editor>
-
+    </div>
+    -->
+    <div class="form-group my-2">
+      <label for="content">Indhold (min. 400 tegn):</label>
+      <div class="NgxEditor__Wrapper">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+        <ngx-editor
+          [editor]="editor"
+          [disabled]="!editState"
+          [ngModel]="html"
+          [minlength]="400"
+          [placeholder]="'Type here...'"
+          formControlName="content"
+          id="content"></ngx-editor>
+      </div>
     </div>
 
     <div class="row mt-3">

@@ -14,9 +14,26 @@
     </div>
 
 
+    <!--
     <div class="form-group my-2">
       <label for="content">Content:</label>
       <angular-editor formControlName="content" [config]="editorConfig" id="content"></angular-editor>
+    </div>
+    -->
+
+    <div class="form-group my-2">
+      <label for="content">Indhold (min. 400 tegn):</label>
+      <div class="NgxEditor__Wrapper">
+        <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+        <ngx-editor
+          [editor]="editor"
+          [ngModel]="html"
+          [disabled]="false"
+          [minlength]="400"
+          [placeholder]="'Type here...'"
+          formControlName="content"
+          id="content"></ngx-editor>
+      </div>
     </div>
 
     <div class="row mt-3">

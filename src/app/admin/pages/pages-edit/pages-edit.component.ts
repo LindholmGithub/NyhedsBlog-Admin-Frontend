@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PostDto} from "../../../shared/postsService/posts.dto";
 import {PageDto} from "../../../shared/pagesService/pages.dto";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
+import {Editor, Toolbar} from "ngx-editor";
 
 @Component({
   selector: 'app-pages-edit',
@@ -12,6 +13,20 @@ import {AngularEditorConfig} from "@kolkov/angular-editor";
   styleUrls: ['./pages-edit.component.css']
 })
 export class PagesEditComponent implements OnInit {
+  editor: Editor;
+  html: '' | undefined;
+
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
+
   editState: boolean;
   error: any;
 
@@ -31,10 +46,12 @@ export class PagesEditComponent implements OnInit {
               private _router: Router,
               private _route: ActivatedRoute) {
     this.editState = false;
+    this.editor = new Editor();
   }
 
   ngOnInit(): void {
     this.loadPages();
+    this.editForm.get('content')?.disable();
   }
 
   loadPages(): void {
@@ -57,19 +74,19 @@ export class PagesEditComponent implements OnInit {
 
     if (!this.editState){
       this.editState = !this.editState;
-      this.editorConfig.editable = this.editState;
+      this.editForm.get('content')?.enable();
       return;
     }
     let page = this.editForm.value as PageDto;
     this._pagesService.update(page.id, page).subscribe(page =>{
       this.editState = !this.editState;
-      this.editorConfig.editable = this.editState;
+      this.editForm.get('content')?.disable();
       this.loadPages();
     })
   }
 
   goBack(): void {
-    this._router.navigateByUrl('/post').then(r => {})
+    this._router.navigateByUrl('/page').then(r => {})
   }
 
   editorConfig: AngularEditorConfig = {};
@@ -77,7 +94,7 @@ export class PagesEditComponent implements OnInit {
   cancel() {
     this.loadPages();
     this.editState = !this.editState;
-    this.editorConfig.editable = this.editState;
+    this.editForm.get('content')?.disable();
   }
 
 }

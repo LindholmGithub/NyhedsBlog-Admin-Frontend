@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PageCreateDto} from "../../../shared/pagesService/pagesCreate.dto";
 import {ErrorDto} from "../../../shared/error.dto";
 import {AngularEditorConfig} from "@kolkov/angular-editor";
+import {Editor, Toolbar} from "ngx-editor";
 
 @Component({
   selector: 'app-pages-create',
@@ -12,6 +13,20 @@ import {AngularEditorConfig} from "@kolkov/angular-editor";
   styleUrls: ['./pages-create.component.css']
 })
 export class PagesCreateComponent implements OnInit {
+
+  editor: Editor;
+  html: '' | undefined;
+
+  toolbar: Toolbar = [
+    ['bold', 'italic'],
+    ['underline', 'strike'],
+    ['code', 'blockquote'],
+    ['ordered_list', 'bullet_list'],
+    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+    ['link', 'image'],
+    ['text_color', 'background_color'],
+    ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
 
   error: any;
   createForm = new UntypedFormGroup({
@@ -25,7 +40,9 @@ export class PagesCreateComponent implements OnInit {
 
   constructor(private _pagesService: PagesService,
               private _router: Router,
-              private _route: ActivatedRoute) { }
+              private _route: ActivatedRoute) {
+    this.editor = new Editor();
+  }
 
   ngOnInit(): void {
     this.createForm.get('title')?.valueChanges.subscribe(x => {
