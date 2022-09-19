@@ -18,7 +18,7 @@
       <td>{{page.title}}</td>
       <td>/{{page.prettyDescriptor}}/</td>
       <td>{{page.author.firstname}} {{page.author.lastname}}</td>
-      <td>{{page.date}}</td>
+      <td>{{page.date.toString().replace("T"," ").slice(0,-8)}}</td>
       <td><a routerLink="/page/edit/{{page.id}}">Redigér</a> | <a routerLink="/page/delete/{{page.id}}">Slet</a></td>
     </tr>
     </tbody>

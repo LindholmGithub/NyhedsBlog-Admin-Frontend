@@ -23,7 +23,7 @@
       <td *ngIf="post.paid === false">Nej</td>
       <td>{{post.prettyDescriptor}}</td>
       <td>{{post.author.firstname}} {{post.author.lastname}}</td>
-      <td>{{post.date}}</td>
+      <td>{{post.date.toString().replace("T"," ").slice(0,-8)}}</td>
       <td><a routerLink="/post/edit/{{post.id}}">Redigér</a> | <a routerLink="/post/delete/{{post.id}}">Slet</a></td>
     </tr>
     </tbody>
