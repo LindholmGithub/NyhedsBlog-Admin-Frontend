@@ -4,13 +4,13 @@
   <table class="table table-striped table-sm" *ngIf="posts && posts.length > 0 else noPosts">
     <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Overskrift</th>
+      <th scope="col" [appSort]="posts" data-order="desc" data-name="id" style="cursor:pointer;" >ID <i class="float-end bi bi-arrow-down-up"></i></th>
+      <th scope="col" [appSort]="posts" data-order="desc" data-name="title" style="cursor:pointer;">Overskrift <i class="float-end bi bi-arrow-down-up"></i></th>
       <th scope="col">Kategori</th>
-      <th scope="col">Betalingsopslag</th>
-      <th scope="col">URL</th>
+      <th scope="col" [appSort]="posts" data-order="desc" data-name="paid" style="cursor:pointer;">Betalingsopslag <i class="float-end bi bi-arrow-down-up"></i></th>
+      <th scope="col" [appSort]="posts" data-order="desc" data-name="prettyDescriptor" style="cursor:pointer;">URL <i class="float-end bi bi-arrow-down-up"></i></th>
       <th scope="col">Forfatter</th>
-      <th scope="col">Dato</th>
+      <th scope="col" [appSort]="posts" data-order="desc" data-name="date" data-type="date"  style="cursor:pointer;">Dato <i class="float-end bi bi-arrow-down-up"></i></th>
       <th scope="col">Valgmuligheder</th>
     </tr>
     </thead>

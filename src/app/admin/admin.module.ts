@@ -25,6 +25,7 @@ import { CustomerReadComponent } from './customer/customer-read/customer-read.co
 import { CustomerDeleteComponent } from './customer/customer-delete/customer-delete.component';
 import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
 import {NgxEditorModule} from "ngx-editor";
+import { SortDirective} from "./util/sort.directive";
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import {NgxEditorModule} from "ngx-editor";
     CustomerCreateComponent,
     CustomerReadComponent,
     CustomerDeleteComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    SortDirective
   ],
   imports: [
     CommonModule,
