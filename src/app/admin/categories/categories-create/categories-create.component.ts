@@ -43,6 +43,7 @@ export class CategoriesCreateComponent implements OnInit {
 
   doCreate(): void{
     let category = this.createForm.value as CategoryCreateDto;
+    category.featured = this.createForm.get('featured')?.value == "true";
     this._categoriesService.save(category).subscribe(c => {
       this._router.navigateByUrl('/category').then(r => {});
     }, error => {
