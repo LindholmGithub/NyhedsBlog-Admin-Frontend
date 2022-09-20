@@ -14,11 +14,11 @@ export class PostsPipe implements PipeTransform {
     }
 
     // @ts-ignore
-    return values.filter((value: PostDto) => {
+    return values.filter((value: PostSortingModel) => {
       const nameFound =
         value.title.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
       const authorNameFound =
-        (value.author.firstname + " " + value.author.lastname).toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+        (value.authorName).toLowerCase().indexOf(filter.toLowerCase()) !== -1;
 
       if (nameFound || authorNameFound) {
         return value;

@@ -9,12 +9,12 @@
     <thead>
     <tr>
       <th sortable="id" (sort)="onSort($event)" scope="col">ID</th>
-      <th sortable="title" scope="col">Overskrift</th>
-      <th sortable="categoryName" scope="col">Kategori</th>
-      <th sortable="paid" scope="col">Betalingsopslag</th>
-      <th sortable="prettyDescriptor" scope="col">URL</th>
-      <th sortable="authorName" scope="col">Forfatter</th>
-      <th sortable="date" scope="col">Dato</th>
+      <th sortable="title" (sort)="onSort($event)" scope="col">Overskrift</th>
+      <th sortable="categoryName" (sort)="onSort($event)" scope="col">Kategori</th>
+      <th sortable="paid" (sort)="onSort($event)" scope="col">Betalingsopslag</th>
+      <th sortable="prettyDescriptor" (sort)="onSort($event)" scope="col">URL</th>
+      <th sortable="authorName" (sort)="onSort($event)" scope="col">Forfatter</th>
+      <th sortable="date" (sort)="onSort($event)" scope="col">Dato</th>
       <th scope="col">Valgmuligheder</th>
     </tr>
     </thead>

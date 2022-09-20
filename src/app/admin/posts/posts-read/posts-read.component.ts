@@ -13,7 +13,7 @@ import {PostsHeaderSort, compare, SortEvent} from "./postsHeaderSort.directive";
 })
 export class PostsReadComponent implements OnInit {
   filter!: string;
-  data!: Array<PostSortingModel>;
+  data: Array<PostSortingModel> = new Array<PostSortingModel>();
   postsArray: Array<PostSortingModel> = new Array<PostSortingModel>();
 
   posts$: Observable<PostDto[]> | undefined;
@@ -37,7 +37,8 @@ export class PostsReadComponent implements OnInit {
             date: obj.date,
             paid: obj.paid
           } as PostSortingModel
-          this.postsArray!.push(newPost)
+          this.postsArray.push(newPost)
+          this.data = this.postsArray;
         })
       })
     this.posts$ = this._postService.getAll()
@@ -59,9 +60,7 @@ export class PostsReadComponent implements OnInit {
 
     // sorting countries
     if (direction === '' || column === '') {
-
-      this.postsArray! = this.data;
-
+      this.postsArray = this.data;
     } else {
       this.postsArray! = [...this.data].sort((a, b) => {
         const res = compare(a[column], b[column]);
