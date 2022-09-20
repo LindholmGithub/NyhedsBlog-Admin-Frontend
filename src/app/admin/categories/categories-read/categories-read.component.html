@@ -5,19 +5,23 @@
     <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">Udvalgt</th>
       <th scope="col">Titel</th>
       <th scope="col">Beskrivelse</th>
       <th scope="col">URL</th>
+      <th scope="col">Artikler</th>
       <th scope="col">Valgmuligheder</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let category of categories">
-      <td>{{category.id}}</td>
-      <td>{{category.title}}</td>
-      <td>{{category.description}}</td>
-      <td>{{category.prettyDescriptor}}</td>
-      <td><a routerLink="/category/edit/{{category.id}}">Redigér</a> | <a routerLink="/category/delete/{{category.id}}">Slet</a></td>
+      <td style="vertical-align: middle;">{{category.id}}</td>
+      <td style="vertical-align: middle;font-size:30px;"><i class="bi {{ category.featured ? 'bi-check-square text-success' : 'bi-x-square text-danger' }}"></i></td>
+      <td style="vertical-align: middle;">{{category.title}}</td>
+      <td style="vertical-align: middle;">{{category.description}}</td>
+      <td style="vertical-align: middle;">{{category.prettyDescriptor}}</td>
+      <td style="vertical-align: middle;"><a routerLink="/post" [queryParams]="{'category': category.id}">{{ category.posts.length }}</a></td>
+      <td style="vertical-align: middle;font-size:24px;"><a routerLink="/category/edit/{{category.id}}"><i class="bi bi-pencil-square"></i></a> | <a routerLink="/category/delete/{{category.id}}"><i class="bi bi-trash"></i></a></td>
     </tr>
     </tbody>
   </table>
