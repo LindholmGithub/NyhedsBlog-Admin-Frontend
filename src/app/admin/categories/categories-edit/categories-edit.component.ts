@@ -17,7 +17,8 @@ export class CategoriesEditComponent implements OnInit {
     id: new UntypedFormControl(''),
     title: new UntypedFormControl('',Validators.required),
     description: new UntypedFormControl('',Validators.required),
-    prettyDescriptor: new UntypedFormControl('', Validators.required)
+    prettyDescriptor: new UntypedFormControl('', Validators.required),
+    featured: new UntypedFormControl('', Validators.required)
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;
@@ -57,6 +58,7 @@ export class CategoriesEditComponent implements OnInit {
       return;
     }
     let category = this.editForm.value as CategoryDto;
+    console.log(category);
     this._categoriesService.update(category.id, category).subscribe(category =>{
       this.editState = !this.editState;
       this.loadCategories();

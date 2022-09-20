@@ -13,6 +13,14 @@
     </div>
 
     <div class="form-group my-2">
+      <label for="featured">Udvalgt:</label>
+      <select class="form-control" id="featured" [attr.disabled]="!editState ? '' : null" formControlName="featured">
+        <option value="true">Ja</option>
+        <option value="false">Nej</option>
+      </select>
+    </div>
+
+    <div class="form-group my-2">
       <label for="description">Beskrivelse:</label>
       <input type="text" class="form-control" placeholder="Beskrivelse her..." id="description" formControlName="description" [readOnly]="!editState">
     </div>

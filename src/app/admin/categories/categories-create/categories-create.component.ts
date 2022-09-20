@@ -14,7 +14,8 @@ export class CategoriesCreateComponent implements OnInit {
   createForm = new UntypedFormGroup({
     title: new UntypedFormControl('',Validators.required),
     description: new UntypedFormControl('',Validators.required),
-    prettyDescriptor: new UntypedFormControl('',Validators.required)
+    prettyDescriptor: new UntypedFormControl('',Validators.required),
+    featured: new UntypedFormControl('false', Validators.required)
   });
   formError: boolean = false;
   formErrorMessage: string | undefined;
