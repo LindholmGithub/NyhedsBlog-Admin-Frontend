@@ -14,7 +14,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let category of categories">
+    <tr style="height:115px;" *ngFor="let category of categories">
       <td style="vertical-align: middle;">{{category.id}}</td>
       <td style="vertical-align: middle;font-size:30px;"><i class="bi {{ category.featured ? 'bi-check-square text-success' : 'bi-x-square text-danger' }}"></i></td>
       <td style="vertical-align: middle;">{{category.title}}</td>
