@@ -58,7 +58,7 @@ export class CategoriesEditComponent implements OnInit {
       return;
     }
     let category = this.editForm.value as CategoryDto;
-    console.log(category);
+    category.featured = this.editForm.get('featured')?.value == "true";
     this._categoriesService.update(category.id, category).subscribe(category =>{
       this.editState = !this.editState;
       this.loadCategories();
