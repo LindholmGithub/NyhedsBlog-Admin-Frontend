@@ -1,28 +1,32 @@
 <h2 class="text-center">Alle Opslag</h2>
 
+<div class="form-group my-3">
+  <input type="search" class="form-control" [(ngModel)]="filter" placeholder="Filter by name or author">
+</div>
+
 <div class="table-responsive" *ngIf="posts$ | async as posts else loading">
-  <table class="table table-striped table-sm" *ngIf="posts && posts.length > 0 else noPosts">
+  <table class="table table-striped table-hover table-sm" *ngIf="postsArray && postsArray.length > 0 else noPosts">
     <thead>
     <tr>
-      <th scope="col" [appSort]="posts" data-order="desc" data-name="id" style="cursor:pointer;" >ID <i class="float-end bi bi-arrow-down-up"></i></th>
-      <th scope="col" [appSort]="posts" data-order="desc" data-name="title" style="cursor:pointer;">Overskrift <i class="float-end bi bi-arrow-down-up"></i></th>
-      <th scope="col">Kategori</th>
-      <th scope="col" [appSort]="posts" data-order="desc" data-name="paid" style="cursor:pointer;">Betalingsopslag <i class="float-end bi bi-arrow-down-up"></i></th>
-      <th scope="col" [appSort]="posts" data-order="desc" data-name="prettyDescriptor" style="cursor:pointer;">URL <i class="float-end bi bi-arrow-down-up"></i></th>
-      <th scope="col">Forfatter</th>
-      <th scope="col" [appSort]="posts" data-order="desc" data-name="date" data-type="date"  style="cursor:pointer;">Dato <i class="float-end bi bi-arrow-down-up"></i></th>
+      <th sortable="id" (sort)="onSort($event)" scope="col">ID</th>
+      <th sortable="title" scope="col">Overskrift</th>
+      <th sortable="categoryName" scope="col">Kategori</th>
+      <th sortable="paid" scope="col">Betalingsopslag</th>
+      <th sortable="prettyDescriptor" scope="col">URL</th>
+      <th sortable="authorName" scope="col">Forfatter</th>
+      <th sortable="date" scope="col">Dato</th>
       <th scope="col">Valgmuligheder</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let post of posts">
+    <tr *ngFor="let post of postsArray | post:filter">
       <td>{{post.id}}</td>
       <td>{{post.title}}</td>
-      <td>{{post.category.title}}</td>
+      <td>{{post.categoryName}}</td>
       <td *ngIf="post.paid === true">Ja</td>
       <td *ngIf="post.paid === false">Nej</td>
       <td>{{post.prettyDescriptor}}</td>
-      <td>{{post.author.firstname}} {{post.author.lastname}}</td>
+      <td>{{post.authorName}}</td>
       <td>{{post.date.toString().replace("T"," ").slice(0,-8)}}</td>
       <td><a routerLink="/post/edit/{{post.id}}">Redigér</a> | <a routerLink="/post/delete/{{post.id}}">Slet</a></td>
     </tr>
